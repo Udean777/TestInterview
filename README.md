@@ -77,3 +77,25 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+const values: number[][] = [
+    [1, 2, 3, 4, 5],
+    [3, 4, 5, 6, 7],
+    [6, 7, 8, 9, 10]
+];
+
+function calculateMinMax(arr: number[][]): number{
+    let maxValues: number[] = []
+
+    for(let num = 0; num < arr.length; num++){
+        const maxArray = Math.max(...arr[num])
+        maxValues.push(maxArray)
+    }
+
+    const minMax =Math.min(...maxValues)
+
+    return minMax
+}
+
+const answer: number = calculateMinMax(values)
+console.log(answer)
