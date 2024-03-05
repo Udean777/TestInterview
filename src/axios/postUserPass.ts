@@ -1,10 +1,10 @@
 import api from './interceptor';
 
-// pass username & password into the params, so the value of resData, will be the same value that passed in textinput
-async function postUserPass(username: string, password: string) {
+// pass email & password into the params, so the value of resData, will be the same value that passed in textinput
+async function postUserPass(email: string, password: string) {
   // first, we set the response data
   const resData = {
-    username,
+    email,
     password,
   };
 

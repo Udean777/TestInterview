@@ -1,16 +1,30 @@
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import {View, Text, TextInput, Button, StyleSheet, Alert} from 'react-native';
 import React, {useState} from 'react';
 import postUserPass from '../axios/postUserPass';
 
 const Login = () => {
-  //  here's how the usestate implemented
-  const [username, setUsername] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  {
-    /* how useState work is, its basically store the data,
-  i'll explain it below
-    */
+
+  function isValidEmail(email: string) {
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return emailRegex.test(email);
   }
+
+  const handleLogin = () => {
+    if (isValidEmail(email)) {
+      postUserPass(email, password);
+
+      Alert.alert(
+        "Login success"
+      );
+    } else {
+      Alert.alert(
+        'Invalid Email',
+        'Please check your email address and try again.',
+      );
+    }
+  };
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -20,15 +34,12 @@ const Login = () => {
 
       <View style={{marginVertical: 10, gap: 10}}>
         <TextInput
-          placeholder="Username"
+          placeholder="email"
           style={styles.textInput}
-          //   so we set the value of username into whatever the text is in the TextInput
-          onChangeText={text => setUsername(text)}
-          value={username}
-          //   and then we set the value of the username, which we already set it to whatever the text in textinput
+          onChangeText={text => setEmail(text)}
+          value={email}
         />
 
-        {/* work the same with the username textinput */}
         <TextInput
           placeholder="Password"
           style={styles.textInput}
@@ -37,8 +48,7 @@ const Login = () => {
         />
       </View>
 
-      {/* then we make the button for login, and we pass the username & password state into the params */}
-      <Button title="Login" onPress={() => postUserPass(username, password)} />
+      <Button title="Login" onPress={handleLogin} />
     </View>
   );
 };

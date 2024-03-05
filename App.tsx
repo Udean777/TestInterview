@@ -15,10 +15,10 @@ import ExampleUseState from './src/hooks/ExampleUseState';
 function App(): React.JSX.Element {
   return (
     <SafeAreaView style={{flex: 1}}>
-      {/* <Login /> */}
+      <Login />
       {/* <ExampleUseCallback /> */}
       {/* // <ExampleUseMemo/> */}
-      <ExampleUseState/>
+      {/* <ExampleUseState/> */}
     </SafeAreaView>
   );
 }
